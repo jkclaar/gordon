@@ -14645,29 +14645,61 @@ div.jp-OutputPrompt {
 
 <div class="reveal">
 <div class="slides"><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Predicting-IDC-in-Breast-Cancer-Histology-Images">Predicting IDC in Breast Cancer Histology Images<a class="anchor-link" href="#Predicting-IDC-in-Breast-Cancer-Histology-Images">&#182;</a></h1>
 </div>
 </div></section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Breast cancer is the most common form of cancer in women, and invasive ductal carcinoma (IDC) is the most common form of breast cancer. Accurately identifying and categorizing breast cancer subtypes is an important clinical task, and automated methods can be used to save time and reduce error.</p>
-<p>The goal of this project is to identify IDC when it is present in otherwise unlabeled histopathology images.</p>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>The goal of this project will be to identify whether breast cancer images present with invasive ductal carcinoma or not.</p>
 
 </div>
-</div></section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="The-dataset">The dataset<a class="anchor-link" href="#The-dataset">&#182;</a></h2><p>The dataset consists of approximately five thousand 50x50 pixel RGB digital images of H&amp;E-stained breast histopathology samples that are labeled as either IDC or non-IDC. (are they all cancerous? unclear as yet)</p>
-<p>These numpy arrays are small patches that were extracted from digital images of breast tissue samples. The breast tissue contains many cells but only some of them are cancerous. Patches that are labeled "1" contain cells that are characteristic of invasive ductal carcinoma.</p>
+</div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Breast cancer is the most common form of cancer in women, and invasive ductal carcinoma (IDC) is the most common form of breast cancer (80% in women, 90% in men).</p>
 
 </div>
-</div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div></div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Unmet-need">Unmet need<a class="anchor-link" href="#Unmet-need">&#182;</a></h2>
+</div>
+</div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Accurately identifying and categorizing cancer subtypes is an important clinical task. It is not remotely straightforward and it is something that doctors don't yet fully understand.</p>
+
+</div>
+</div></div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>So, if automated methods can be used to save time and reduce error, it's worth our attention.</p>
+
+</div>
+</div></div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="The-dataset">The dataset<a class="anchor-link" href="#The-dataset">&#182;</a></h2>
+</div>
+</div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>The dataset consists of approximately 5,000 50x50 pixel RGB digital images of H&amp;E stained breast cancer histopathology samples that are labeled as either IDC (1) or non-IDC (0).</p>
+
+</div>
+</div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">definitions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;histopathology&#39;</span><span class="p">:</span> <span class="s1">&#39;diagnosis of diseases of biological tissues&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;histology&#39;</span><span class="p">:</span> <span class="s1">&#39;study of biological tissues at the microscopic level&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;H&amp;E staining&#39;</span><span class="p">:</span> <span class="s1">&#39;histological purpley pinkey cell staining&#39;</span>
+<span class="p">}</span>
 </pre></div>
 
      </div>
@@ -14675,13 +14707,28 @@ div.jp-OutputPrompt {
 </div>
 </div>
 
-</div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div></div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>These images are small patches extracted from much larger digital images of breast tissue samples. The breast tissue contains many cells but only some of them are cancerous.</p>
+
+</div>
+</div></div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Let's check out the data. 🔥🔥🔥</p>
+
+</div>
+</div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data/X.npy&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data/X.npy&#39;</span><span class="p">)</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data/Y.npy&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The shape of X is: </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">; </span><span class="se">\t</span><span class="s1"> RGB&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The shape of Y is: </span><span class="si">{</span><span class="n">Y</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">; </span><span class="se">\t\t</span><span class="s1"> Binary&#39;</span><span class="p">)</span>
@@ -14694,9 +14741,14 @@ div.jp-OutputPrompt {
 
 <div class="jp-Cell-outputWrapper">
 
+
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>The shape of X is: (5547, 50, 50, 3); 	 RGB
@@ -14709,20 +14761,16 @@ The shape of Y is: (5547,); 		 Binary
 
 </div>
 
-</div></div><div class="fragment">
-<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Let's take a look at what positive and negative actually look like, just for fun.</p>
-
-</div>
 </div></div></section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The top row negative, bottom row positive for IDC.</p>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>The top row is negative for IDC, the bottom row is positive</p>
 
 </div>
 </div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">neg</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">Y</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span>
@@ -14744,9 +14792,14 @@ The shape of Y is: (5547,); 		 Binary
 
 <div class="jp-Cell-outputWrapper">
 
+
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
 
 
 
@@ -14763,14 +14816,15 @@ The shape of Y is: (5547,); 		 Binary
 </div>
 
 </div></div><div class="fragment">
-<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Your immediate reaction might be to guess that the ratio of pink to purple is obviously the differentiating factor here.</p>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>You can see the pinks and the purples doing different things. Your immediate reaction might be to guess that the ratio of pink to purple is obviously the differentiating factor here. Let's take a look at some other samples.</p>
 
 </div>
 </div></div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">n</span><span class="o">=</span><span class="mi">10</span>
@@ -14789,9 +14843,14 @@ The shape of Y is: (5547,); 		 Binary
 
 <div class="jp-Cell-outputWrapper">
 
+
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
 
 
 
@@ -14808,25 +14867,34 @@ The shape of Y is: (5547,); 		 Binary
 </div>
 
 </div><div class="fragment">
-<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>A look at a different set of 10 samples each shows that the dilineation is not so obvious, especially to us unqualified, unseemly laypeople.</p>
 
 </div>
 </div></div></section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>There is an accompanying scientific paper discussing the dataset, which itself comes courtesy of the Cleveland Clinic Cancer Center, and a data science nerd called Andrew.</p>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="This-project-is-a-good-idea">This project is a good idea<a class="anchor-link" href="#This-project-is-a-good-idea">&#182;</a></h2><p>There is an accompanying scientific paper discussing the dataset, which itself comes courtesy of the Cleveland Clinic Cancer Center, along with 200,000 more images which will require only minimal preprocessing.</p>
 
 </div>
 </div><div class="fragment">
-<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>My hope is that a Deep Learning model will yield accuracy and specificity of around 80%, an entirely arbitrary number that is based on no data, just kidding i have links to a few papers that demonstrate this to be a pretty good goal, though they are a bit dated at this point.</p>
-<p>I have requested access to a second H&amp;E stain IDC histology dataset that I hope to retest the final model on, to really see if this sort of thing is generalizable.</p>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>My hope is that a Deep Learning model will yield accuracy of around 80%, an entirely arbitrary number that is based on no data, just kidding i have links to a few papers that demonstrate this to be a reasonable goal.</p>
 
 </div>
 </div></div><div class="fragment">
-<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Some notes as to H&amp;E Stain as a methodology in itself:</p>
-<p>H&amp;E Stain is the most common method of cell pathology. Think of the H&amp;E stain as a triage stain. It is used as an initial screening. This makes it a great application for Machine Learning, because reducing the price, time, and inaccuracy of routine decision-based procedures is exactly why ML is a great tool at all. So there.</p>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>I have requested access to a second H&amp;E stain IDC histology dataset that I hope to retest the robustness of the final model on.</p>
+
+</div>
+</div></div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>On H&amp;E Stain:</p>
+<p>H&amp;E Stain is the most common method of cell pathology. Think of the H&amp;E stain as a triage stain. It is used as an initial screening. This makes it a great application of Machine Learning, because reducing the cost, time, and inaccuracy of routine decision-based procedures is exactly why ML is a great tool at all. So there.</p>
 
 </div>
 </div></div></section></section>
